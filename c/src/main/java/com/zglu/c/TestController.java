@@ -8,11 +8,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
 
-    @Reference(url = "dubbo://127.0.0.1:20880")
+    @Reference(application = "p", version = "1.0")
     private TestService testService;
+    @Reference(application = "p", version = "1.1")
+    private TestService testService1;
+    @Reference(application = "p2", version = "2.0")
+    private TestService testService2;
 
     @GetMapping
-    public String test(){
+    public String test() {
         return testService.test();
+    }
+
+    @GetMapping("/1")
+    public String test1() {
+        return testService1.test();
+    }
+
+    @GetMapping("/2")
+    public String test2() {
+        return testService2.test();
     }
 }
