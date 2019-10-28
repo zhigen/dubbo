@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
 
-    @Reference(application = "p", version = "1.0")
+    @Reference(version = "1.0")
     private TestService testService;
-    @Reference(application = "p", version = "1.1")
+    @Reference(version = "1.1")
     private TestService testService1;
-    @Reference(application = "p2", version = "2.0")
+    @Reference(version = "2.0")
     private TestService testService2;
-    @Reference(application = "p2", version = "3.0")
+    @Reference(version = "3.0")
     private TestService testService3;
 
     @GetMapping
