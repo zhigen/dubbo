@@ -1,5 +1,6 @@
 package com.zglu.p2;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.apache.dubbo.config.annotation.Service;
 
@@ -7,7 +8,11 @@ import org.apache.dubbo.config.annotation.Service;
 public class TestService3 implements com.zglu.api.TestService {
 
     @Override
-    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000")
+    @HystrixCommand(commandProperties = {
+            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "2"),
+            @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000"),
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000")
+    })
     public String test() {
         try {
             Thread.sleep(1100);
