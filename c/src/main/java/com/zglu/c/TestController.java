@@ -1,5 +1,6 @@
 package com.zglu.c;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.zglu.api.TestService;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,8 @@ public class TestController {
     private TestService testService1;
     @Reference(application = "p2", version = "2.0")
     private TestService testService2;
+    @Reference(application = "p2", version = "3.0")
+    private TestService testService3;
 
     @GetMapping
     public String test() {
@@ -28,5 +31,15 @@ public class TestController {
     @GetMapping("/2")
     public String test2() {
         return testService2.test();
+    }
+
+    @HystrixCommand(fallbackMethod = "timeOut")
+    @GetMapping("/3")
+    public String test3() {
+        return testService3.test();
+    }
+
+    public String timeOut() {
+        return "timeOut";
     }
 }
