@@ -2,11 +2,11 @@ package com.zglu.p;
 
 import org.apache.dubbo.config.annotation.Service;
 
-@Service(version = "1.0")
-public class TestService implements com.zglu.api.TestService {
+@Service(version = "1.1")
+public class TestService1 implements com.zglu.api.TestService {
 
     @Override
     public String test() {
-        return "test";
+        return "test1";
     }
 }

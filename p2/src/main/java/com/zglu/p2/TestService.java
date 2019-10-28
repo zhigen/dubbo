@@ -1,4 +1,4 @@
-package com.zglu.p;
+package com.zglu.p2;
 
 import org.apache.dubbo.config.annotation.Service;
 
@@ -7,6 +7,6 @@ public class TestService implements com.zglu.api.TestService {
 
     @Override
     public String test() {
-        return "test";
+        return "test负载";
     }
 }
