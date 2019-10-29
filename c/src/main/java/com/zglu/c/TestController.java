@@ -2,8 +2,10 @@ package com.zglu.c;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.zglu.api.TestService;
+import com.zglu.api.TestService2;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -15,8 +17,8 @@ public class TestController {
     private TestService testService11;
     @Reference(version = "2.0")
     private TestService testService20;
-    @Reference(version = "3.0")
-    private TestService testService30;
+    @Reference
+    private TestService2 testService30;
 
     @GetMapping("/10")
     public String test() {
@@ -34,12 +36,12 @@ public class TestController {
     }
 
     @HystrixCommand(fallbackMethod = "timeOut")
-    @GetMapping("/30")
-    public String test3() {
-        return testService30.test();
+    @GetMapping("/30/{milliseconds}")
+    public String test3(@PathVariable int milliseconds) {
+        return testService30.test(milliseconds);
     }
 
-    public String timeOut() {
-        return "3.0无回应";
+    public String timeOut(int milliseconds) {
+        return "超时或熔断后降级返回";
     }
 }
