@@ -1,14 +1,12 @@
-package com.zglu.c;
+package com.zglu.p;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 
-@EnableHystrix
 @SpringBootApplication
-public class CRun {
+public class P1Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(CRun.class);
+        SpringApplication.run(P1Application.class, args);
     }
 }

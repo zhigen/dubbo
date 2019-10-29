@@ -2,10 +2,13 @@ package com.zglu.p2;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import com.zglu.api.TestService2;
+import lombok.extern.java.Log;
 import org.apache.dubbo.config.annotation.Service;
 
-@Service(version = "3.0")
-public class TestService3 implements com.zglu.api.TestService {
+@Log
+@Service
+public class TestService30 implements TestService2 {
 
     @Override
     @HystrixCommand(commandProperties = {
@@ -13,12 +16,14 @@ public class TestService3 implements com.zglu.api.TestService {
             @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000"),
             @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000")
     })
-    public String test() {
+    public String test(int milliseconds) {
         try {
-            Thread.sleep(1100);
+            log.info("访问了");
+            Thread.sleep(milliseconds);
+            log.info("超时了");
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            log.info("超时了");
         }
-        return "test3";
+        return "正常返回";
     }
 }

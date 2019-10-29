@@ -6,9 +6,9 @@ import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 
 @EnableHystrix
 @SpringBootApplication
-public class Run2 {
+public class P2Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(Run2.class, args);
+        SpringApplication.run(P2Application.class, args);
     }
 }
