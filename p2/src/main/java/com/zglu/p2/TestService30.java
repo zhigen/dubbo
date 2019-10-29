@@ -2,10 +2,12 @@ package com.zglu.p2;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import lombok.extern.java.Log;
 import org.apache.dubbo.config.annotation.Service;
 
+@Log
 @Service(version = "3.0")
-public class TestService3 implements com.zglu.api.TestService {
+public class TestService30 implements com.zglu.api.TestService {
 
     @Override
     @HystrixCommand(commandProperties = {
@@ -15,10 +17,12 @@ public class TestService3 implements com.zglu.api.TestService {
     })
     public String test() {
         try {
+            log.info("访问了3.0");
             Thread.sleep(1100);
+            log.info("超时了");
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            log.info("超时了");
         }
-        return "test3";
+        return "P2test3.0";
     }
 }
