@@ -6,7 +6,7 @@
     <modules>
         <module>api</module>
         <module>c</module>
-        <module>p</module>
+        <module>p1</module>
         <module>p2</module>
     </modules>
     <groupId>com.zglu</groupId>

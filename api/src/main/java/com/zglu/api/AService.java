@@ -1,6 +1,6 @@
 package com.zglu.api;
 
-public interface TestService {
+public interface AService {
 
     String test();
 }

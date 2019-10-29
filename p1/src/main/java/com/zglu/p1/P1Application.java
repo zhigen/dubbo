@@ -1,4 +1,4 @@
-package com.zglu.p;
+package com.zglu.p1;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
